@@ -26,13 +26,35 @@
 		 <img src="./kshipra.png" style="width:592px;height:602px;">
 		<p>
 			'PARAM' is a Sanskrit word meaning 'supreme'. The Param programme is one of the five national(India) initiatives launched in the mid-1980s - each a time-bound mission to deliver a supercomputer in the gigaflops range. In 1998, the PARAM 10000 was unveiled. PARAM 10000 used several independent nodes, each based on the Sun Enterprise 250 server and each such server contained two 400Mhz UltraSPARC II processors. Earlier, the	processing nodes of PARAM have been Transputers, i860, SuperSparc, DEC Alpha and UltraSparc I.
-		</p>
-		<p>
+		</p><p>
 			In this distributed memory machine, parallel processing is supported by message passing	communication software like MPI and PVM. For compute intensive applications like weather forecasting, seismic data processing, computational fluid dynamics, etc. an effective low latency, high bandwidth supported communication software KSHIPRA3 is	provided. PARAM 10000 is also equipped with HPF and Fortran 90 compilers.
 		</p><p>
 			PARAM 10000 being a 1998 design and modelled, it has been outperformed by many super computers that are built in 21st century. Thus its rank in not visible in top 500 list. The peak speed of this base system was 6.4 GFLOPS. A typical system would contain 160 CPUs and be capable of 100 GFLOPS. But, it was easily scalable to the TFLOP range. Its Aggregate Main Memory was 33Gbytes and Aggregate Storage 800 Gbytes. Later in 1999 it was exported to Russia and Singapore.
 		</p>
-
+		
+		<h2> Climate Modeling on PARAM 10000 </h2>
+ 		<img src="./comparsion.jpg" style="width:866px;height:695px;">
+		<p>
+			The para11elisation of the codes T80L18 and T126L28 on PARAM 10000 were
+			attempted. The main task before deciding the parallelisation strategy of the code was to identify the
+			nature of parallelism involved in the code and subsequent compute intensive parts and
+			their data dependencies. The most obvious and clear data independency,
+			latitude wise parallelisation was implemented. For this strategy of latitude wise data decomposition, data for latitude is available for
+			each processor.
+		</p><p>
+			A pair of latitudes is allocated on each processor. In the spectral models,
+			major computations are done in Fourier and Legendre transform. The transforms are
+			performedd twice for physics and dynamics part of the code. In order to minimise the
+			communication traffic, these transforms should be performed on each processor
+			sequentially. With latitude distribution, FFT can be performed independently without
+			any communication on each processor, but this leads to parallel Legendre transform (the
+			most time consuming) where partial sums are performed on each processor. This also
+			ensures minimal changes in the original algorithm of the sequential code. 
+		</p><p>		
+			The parallelisation procedure was implemented for the code T80LI8 and the
+			computations were carried out for time steps of 15 minutes each. One day forecast was
+			achieved by 96 iterations and the results were compared succesfully up to five days of forecast.
+		</p>
 
 
 
