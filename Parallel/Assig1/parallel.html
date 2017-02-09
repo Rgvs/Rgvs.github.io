@@ -34,8 +34,24 @@
 		
 		<h2> Climate Modeling on PARAM 10000 </h2>
  		<img src="./comparsion.jpg" style="width:866px;height:695px;">
+		<p> 
+			The Climate Models T21 and T42 are computed on only 8 computer nodes. The communication between nodes was achieved by messaging protocols through 100 BaseT fast ethernet using MPI. These models
+			have a grid size of 600 km and 300 km respectively in the horizontal directions.
+			
+		</p><p>
+			The codes were parallelised using the farm field approach. The input to the model was
+			provided as the grid point values of temperature, horizontal velocity components,
+			humidity, surface pressure I roughness I orography, etc. The GFDL scheme is used for
+			radiation calculations which are done every 12 hours. This scheme includes long and
+			short wave radiation and cloud cover. The dry and moist adiabatic adjustment and large
+			scale condensation are also included in the model. Using data parallelism approach, the
+			models were operational on PARAM system and reasonably good speedup was obtained.
+		</p>
+		
+		
+		
 		<p>
-			The para11elisation of the codes T80L18 and T126L28 on PARAM 10000 were
+			The parallelisation of the codes T80L18 and T126L28 on PARAM 10000 were
 			attempted. The main task before deciding the parallelisation strategy of the code was to identify the
 			nature of parallelism involved in the code and subsequent compute intensive parts and
 			their data dependencies. The most obvious and clear data independency,
