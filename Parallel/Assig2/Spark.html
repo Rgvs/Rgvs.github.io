@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<title>Apache Spark - GraphX</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+.w3-sidenav a,.w3-sidenav h4 {padding: 12px;}
+.w3-navbar li a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+</style>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-opennav w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+    <a href="./index.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Graphx</a>
+    <a href="./Spark.html" class="w3-bar-item w3-button w3-theme-l1">Spark and RDDS</a>
+    <a href="./RDS.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Resilient Distributed Graphs</a>
+    <a href="./Graph-PC.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Graph-Parallel Computation</a>
+  </div>
+</div>
+
+<!-- Main content: shift it to the right by 250 pixels when the sidenav is visible -->
+<div class="w3-main" style="margin: 0px 100px">
+
+  <div class="w3-row w3-padding-64">
+    <div class="w3-container">
+      <h1 class="w3-text-teal">Spark</h1>
+      <p>
+        Spark is a MapReduce-like data-parallel computation engine
+open-sourced by UC Berkeley. Spark has several features that differentiate it from traditional MapReduce engines such as Hadoop:
+        <ol class="list-group">
+              <li class="list-group-item">It supports general computation DAGs beyond the two-stage MapReduce topology</li>
+              <li class="list-group-item"> The execution engine can tolerate the loss of any set of worker
+nodes and can automatically re-execute lost tasks. This is explained further below.</li>
+              <li class="list-group-item"> It provides an in-memory storage abstraction called Resilient
+Distributed Datasets (RDDs) that lets applications keep data
+in memory, and automatically reconstructs lost partitions upon failures. </li>
+              <li class="list-group-item">  It integrates with the Scala command-line shell to enable
+interactive operations on RDDs.</li>
+              <li class="list-group-item"> RDDs allow the optional specification of a data partitioner,
+and the execution engine can exploit this to co-partition RDDs
+and co-schedule tasks to avoid data movement </li>
+        </ol>
+      </p>
+    </div>
+   
+
+  <div class="w3-row">
+    <div class="w3-container">
+      <h1 class="w3-text-teal">RDDs</h1>
+      
+      <p>
+        RDDs are immutable, partitioned collections that can be created
+through various data-parallel operators (e.g., map, group-by, hash-join). Each RDD is either a collection residing in an external storage
+(e.g., on disks), or a derived dataset created by applying operators to other RDDs. For example, given an RDD of (visitID, URL) pairs
+for visits to a website, we might compute an RDD of (URL, count) pairs by applying a map operator to turn each event into an (URL, 1)
+pair, and then a reduce to add the counts by URL. RDD operations are invoked through a functional interface in Scala, Java, or Python.
+    </p>
+   
+  <footer id="myFooter">
+    <div class="w3-container w3-theme-l2 w3-padding-32">
+      <h4>Rahul Gadi. Parallel Models. </h4>
+      <p>Reference - <a href= "http://www.istc-cc.cmu.edu/publications/papers/2013/grades-graphx_with_fonts.pdf"> GraphX: A Resilient Distributed Graph System on Spark </a> </p>
+    </div>
+  </footer>
+
+<!-- END MAIN -->
+</div>
+
+
+</body>
+</html>

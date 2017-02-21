@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<title>Apache Spark - GraphX</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+.w3-sidenav a,.w3-sidenav h4 {padding: 12px;}
+.w3-navbar li a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+</style>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-opennav w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+    <a href="./index.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Graphx</a>
+    <a href="./Spark.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Spark and RDDS</a>
+    <a href="./RDS.html" class="w3-bar-item w3-button w3-theme-l1">Resilient Distributed Graphs</a>
+    <a href="./Graph-PC.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Graph-Parallel Computation</a>
+  </div>
+</div>
+
+<!-- Main content: shift it to the right by 250 pixels when the sidenav is visible -->
+<div class="w3-main" style="margin: 0px 100px">
+
+  <div class="w3-row w3-padding-64">
+    <div class="w3-container">
+      <h1 class="w3-text-teal">Resilient Distributed Graphs</h1>
+      <p>
+        Analogous to data-parallel computation which adopts a record
+centric view of data, graph-parallel computation typically adopts a
+vertex (and occasionally edge) centric view of computation. However, in contrast to data-parallel systems which define program logic
+as functional transformations on collections, existing graph-parallel
+systems restrict program logic to the level of vertex processes. Retaining the data-parallel metaphor, program logic in the GraphX
+system defines transformations on graphs with each operation yielding a new graph. As a consequence, the core data-structure in the
+GraphX systems is an immutable graph. The GraphX graph consists of both the directed adjacency structure
+as well as user defined attributes associated with each vertex and edge. Programs in the GraphX system describe transformations
+from one graph to the next either through operators which transform vertices, edges, or both in the context of their neighborhoods(adjacent vertices and edges).
+      </p>
+    </div>
+   
+
+  <div class="w3-row">
+    <div class="w3-container">
+      <h1 class="w3-text-teal">Partitioning</h1>
+      
+      <p>
+        Unlike data-parallel computation in which data is processed in
+isolation, graph-parallel computation requires each vertex or edge
+to be processed in the context of its neighborhood. Moreover each
+transformation depends on the result of
+distributed joins
+between
+vertices and edges. As a consequence, indexing and data layout
+are important steps in achieving an efficient distributed execution.
+Because the graph structure describes data movement, distributed
+graph computation systems rely on graph partitioning and efficient
+graph storage to minimize communication and storage overhead,
+and ensure balanced computation.
+      </p>
+    </div>
+  </div>
+  
+  
+  <div class="w3-row">
+    <div class="w3-container">
+      <h2 class="w3-text-teal"> From Edge-Cuts to Vertex-Cuts </h2>
+      
+      <p>
+        Most graph-parallel systems partition the graph by constructing
+an edge-cut. An edge-cut uniquely assigns vertices to machines
+while allowing edges to span across machines. The
+communication and storage overhead of an edge-cut is directly
+proportional to the number of edges that are cut. Therefore we can
+reduce communication overhead and ensure balanced computation
+by minimizing both the number of cut edges as well as the number
+of vertices assigned to the most loaded machine.
+      </p>
+      <p> 
+        In contrast to edge-cuts which evenly assign vertices to machines,
+vertex-cuts evenly assign edges to machines and allow vertices to
+span multiple machines. The communication and storage overhead of
+a vertex-cut is directly proportional to the sum of the number of
+machines spanned by each vertex. Therefore, we can reduce communication overhead and ensure balanced computation by evenly
+assigning edges to machines in way that minimizes the number of
+machines spanned by each vertex.
+    </div>
+  </div>
+  
+  <div class="w3-row">
+    <div class="w3-container">
+      <h2 class="w3-text-teal"> Vertex-Cuts as Tables in GraphX </h2>
+      
+      <p>
+      The GraphX resilient distributed graph (RDG) data-structure
+achieves a vertex-cut representation of a graph using three unordered
+horizontally partitioned tables implemented as Spark RDDs
+        <ol class="list-group">
+              <li class="list-group-item">EdgeTable(pid, src, dst, data)
+: stores the adjacency structure and edge data. Each edge is represented as a
+tuple consisting of the source vertex id, destination vertex id, and user-defined data as well as a virtual partition identifier(pid). Note that the edge table contains only the vertex ids
+and not the vertex data. The edge table is partitioned by the pid.</li>
+              <li class="list-group-item"> VertexDataTable(id, data)
+: stores the vertex data, in the form of a vertex (id, data) pairs. The vertex data table is indexed and partitioned by the vertex id.</li>
+              <li class="list-group-item"> VertexMap(id, pid)
+: provides a mapping from the id of a vertex to the ids of the virtual partitions that contain
+adjacent edges. The vertex map table is partitioned by the vertex id. </li>
+        </ol>
+      </p>
+      
+    </div>
+  </div>
+  
+  
+  <footer id="myFooter">
+    <div class="w3-container w3-theme-l2 w3-padding-32">
+      <h4>Rahul Gadi. Parallel Models. </h4>
+      <p>Reference - <a href= "http://www.istc-cc.cmu.edu/publications/papers/2013/grades-graphx_with_fonts.pdf"> GraphX: A Resilient Distributed Graph System on Spark </a> </p>
+    </div>
+  </footer>
+
+<!-- END MAIN -->
+</div>
+
+
+</body>
+</html>

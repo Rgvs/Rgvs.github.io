@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<title>Apache Spark - GraphX</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+
+.w3-navbar li a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+</style>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-opennav w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+    <a href="./index.html" class="w3-bar-item w3-button w3-theme-l1">Graphx</a>
+    <a href="./Spark.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Spark and RDDS</a>
+    <a href="./RDS.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Resilient Distributed Graphs</a>
+    <a href="./Graph-PC.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Graph-Parallel Computation</a>
+  </div>
+</div>
+
+<!-- Main content: shift it to the right by 250 pixels when the sidenav is visible -->
+<div class="w3-main" style="margin:0px 100px">
+
+  <div class="w3-row w3-padding-64">
+    <div class="w3-container">
+      <h1 class="w3-text-teal">Overview</h1>
+      <p>GraphX is a new component(alpha version currently) in Apache Spark for graphs and graph-parallel computation. At a high level, GraphX extends the Spark RDD (Resilient Distributed Dataset) by introducing a new Graph abstraction: a directed multigraph with properties attached to each vertex and edge. To support graph computation, GraphX exposes a set of fundamental operators (e.g., subgraph, joinVertices, and aggregateMessages) as well as an optimized variant of the Pregel API. In addition, GraphX includes a growing collection of graph algorithms and builders to simplify graph analytics tasks.</p>
+    </div>
+
+
+  <div class="w3-row">
+    <div class="w3-container">
+      <h1 class="w3-text-teal">Why GraphX?</h1>
+      <p>From social networks to advertising and the web, big graphs can
+be found in a wide range of important applications. By modeling the
+relationships between users, products, and ideas, graphs allow us to
+identify communities, target advertising, and decipher the meaning
+of documents. In response to the growing size and importance of
+graph data, a range of new large-scale distributed
+graph-parallel
+frameworks (
+e.g.,
+Pregel, PowerGraph, and others)
+have emerged. Each framework introduces a new programming
+abstraction that allows users to compactly describe graph algorithms
+(
+e.g.,
+PageRank, Belief Propagation, ...) and a corresponding run-
+time engine that efficiently executes these algorithms on multicore nd distributed systems. By abstracting away the challenges of
+large-scale distributed system design, these frameworks simplify the
+design, implementation, and application of new sophisticated graph
+algorithms to large-scale real-world graph problems.</p>
+    <p>
+        Unfortunately, these new graph-parallel
+systems do not address the challenges of graph construction and
+transformation which are often just as problematic as the subsequent
+computation. Furthermore, existing graph-parallel systems provide
+limited fault-tolerance and support for interactive data mining.
+    </p>
+    <p>
+        GraphX combines the advantages of both
+data-parallel and graph-parallel systems by efficiently expressing
+graph computation within the Spark data-parallel framework. Graphx
+leverage new ideas in distributed graph representation to efficiently
+distribute graphs as tabular data-structures. Similarly, Graphx leverage
+advances in data-flow systems to exploit in-memory computation
+and fault-tolerance. It provide powerful new operations to simplify
+graph construction and transformation. Using these primitives one can
+implement the PowerGraph and Pregel abstractions in less than 20
+lines of code. Finally, by exploiting the Scala foundation of Spark,
+Graphx enable users to interactively load, transform, and compute on
+massive graphs
+    </p>
+
+  <footer id="myFooter">
+    <div class="w3-container w3-theme-l2 w3-padding-32">
+      <h4>Rahul Gadi. Parallel Models. </h4>
+      <p>Reference - <a href= "http://www.istc-cc.cmu.edu/publications/papers/2013/grades-graphx_with_fonts.pdf"> GraphX: A Resilient Distributed Graph System on Spark </a> </p>
+    </div>
+  </footer>
+
+<!-- END MAIN -->
+</div>
+
+
+</body>
+</html>

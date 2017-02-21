@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<title>Apache Spark - GraphX</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+.w3-sidenav a,.w3-sidenav h4 {padding: 12px;}
+.w3-navbar li a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+</style>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-opennav w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+    <a href="./index.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Graphx</a>
+    <a href="./Spark.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Spark and RDDS</a>
+    <a href="./RDS.html" class="w3-bar-item w3-button w3-theme-l1">Resilient Distributed Graphs</a>
+    <a href="./Graph-PC.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Graph-Parallel Computation</a>
+  </div>
+</div>
+
+<!-- Main content: shift it to the right by 250 pixels when the sidenav is visible -->
+<div class="w3-main" style="margin: 0px 100px">
+
+  <div class="w3-row w3-padding-64">
+    <div class="w3-container">
+      <h1 class="w3-text-teal"></h1>
+      <p>
+        While the basic GraphX RDG interface naturally expresses graph
+transformations, filtering operations, and queries, it does not directly
+provide an API for recursive graph-parallel algorithms (
+e.g.,
+PageR-
+ank). Instead, the GraphX interface was designed to enable the
+construction of new graph-parallel APIs. By composing operations
+in the RDG interface we are able to compactly express several of the
+most widely used graph-parallel abstractions.
+      </p>
+      <p>
+      Existing graph-parallel abstractions like PowerGraph and Pregel adopt a vertex centric programming model in which the
+user implements a vertex program Q which is executed in parallel on each vertex v∈V in the sparse graph G={V, E}. Each instance Q(v)of the vertex program transforms the vertex attributes
+by interacting, through shared state or messages, with neighboring instances Q(u) where(u, v)∈E. Because most graph algorithms
+factor according to the graph structure, they can be naturally expressed in the form of vertex-programs. By restricting the scope
+of computation, automatically coordinating communication, and addressing the challenges of distributed execution, graph-parallel
+abstractions substantially simplify the implementation of scalable distributed graph algorithms.
+      </p>
+    </div>
+   
+
+    
+  
+  <footer id="myFooter">
+    <div class="w3-container w3-theme-l2 w3-padding-32">
+      <h4>Rahul Gadi. Parallel Models. </h4>
+      <p>Reference - <a href= "http://www.istc-cc.cmu.edu/publications/papers/2013/grades-graphx_with_fonts.pdf"> GraphX: A Resilient Distributed Graph System on Spark </a> </p>
+    </div>
+  </footer>
+
+<!-- END MAIN -->
+</div>
+
+
+</body>
+</html>
